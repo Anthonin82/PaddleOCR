@@ -1,10 +1,10 @@
 from paddleocr import PaddleOCR
-
-
-
-from paddleocr import PaddleOCR,draw_ocr
-# Paddleocr supports Chinese, English, French, German, Korean and Japanese.
-# You can set the parameter `lang` as `ch`, `en`, `fr`, `german`, `korean`, `japan`
-# to switch the language model in order.
-# Predict table image
-tools/infer_table.py -c configs/table/SLANet.yml -o Global.pretrained_model={path/to/weights}/best_accuracy  Global.infer_img=ppstructure/docs/table/table.jpg
+# https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.7/ppstructure/table/README.md
+table/predict_table.py \
+    --det_model_dir=inference/ch_PP-OCRv3_det_infer \
+    --rec_model_dir=inference/ch_PP-OCRv3_rec_infer  \
+    --table_model_dir=inference/ch_ppstructure_mobile_v2.0_SLANet_infer \
+    --rec_char_dict_path=../ppocr/utils/ppocr_keys_v1.txt \
+    --table_char_dict_path=../ppocr/utils/dict/table_structure_dict_ch.txt \
+    --image_dir=docs/table/table.jpg \
+    --output=../output/table
